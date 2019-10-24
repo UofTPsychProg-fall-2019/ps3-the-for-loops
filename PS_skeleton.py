@@ -12,7 +12,12 @@ Note that this is a group assignment. Please work in groups of ~4. You can divvy
 up the questions between you, or better yet, work together on the questions to 
 overcome potential hurdles 
 """
-
+#Group Members
+#Georgia Hadjis
+#Joelle Girgis
+#Emily Schwartzman
+#Youval Aberman
+#William Staples
 #%% import packages 
 import os
 import numpy as np
