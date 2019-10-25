@@ -115,6 +115,10 @@ IAT_clean['race_black'] = 1*(IAT_clean.race==5)
 # *hint check out the normalization options
 prop_black = (pd.crosstab(IAT_clean.race_black, IAT_clean.state))
 
+print(pd.crosstab(IAT_clean.race_black, IAT_clean.state, normalize=True))
+print(pd.crosstab(IAT_clean.race_black, IAT_clean.state, normalize='columns'))
+print(pd.crosstab(IAT_clean.race_black, IAT_clean.state,  normalize='index')) 
+
 # state_pop.xlsx contains census data from 2000 taken from http://www.censusscope.org/us/rank_race_blackafricanamerican.html
 # the last column contains the proportion of residents who identify as 
 # black/African American 
