@@ -100,8 +100,9 @@ for state in states:
     df_state_bias = df_state_bias.append({'state': state, 'bias': median}, ignore_index = True)
 
 # now use the pivot_table function to calculate the same statistics
-state_bias=...
-
+state_bias=pd.pivot_table (IAT_clean, values = 'D_white_bias',
+                           index = ['state'],
+                           aggfunc=np.median)
 # make another pivot_table that calculates median bias per state, separately 
 # for each race (organized by columns)
 state_race_bias=...
