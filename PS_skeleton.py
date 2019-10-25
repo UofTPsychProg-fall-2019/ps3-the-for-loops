@@ -93,8 +93,11 @@ states =pd.Series(pd.Categorical(IAT_clean.state)).unique()
 # write a loop that iterates over states to calculate the median white-good
 # bias per state
 # store the results in a dataframe with 2 columns: state & bias
-
-
+df_state_bias = pd.DataFrame(columns=['state','bias'])
+for state in states:
+    s = IAT_clean[IAT_clean.state == state]
+    median = s.D_white_bias.median()
+    df_state_bias = df_state_bias.append({'state': state, 'bias': median}, ignore_index = True)
 
 # now use the pivot_table function to calculate the same statistics
 state_bias=...
