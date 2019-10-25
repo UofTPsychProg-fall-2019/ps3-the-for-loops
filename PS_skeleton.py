@@ -108,12 +108,12 @@ state_race_bias=...
 
 # add a new variable that codes for whether or not a participant identifies as 
 # black/African American
-IAT_clean['race_black'] = 1*(IAT_clean.race==5) #you want this to be the sam elength as data frame, or a single value, which it iwll propogate throughout all ns of data frame 
+IAT_clean['race_black'] = 1*(IAT_clean.race==5)
 
 # use your new variable along with the crosstab function to calculate the 
 # proportion of each state's population that is black 
 # *hint check out the normalization options
-prop_black =...
+prop_black = (pd.crosstab(IAT_clean.race_black, IAT_clean.state))
 
 # state_pop.xlsx contains census data from 2000 taken from http://www.censusscope.org/us/rank_race_blackafricanamerican.html
 # the last column contains the proportion of residents who identify as 
