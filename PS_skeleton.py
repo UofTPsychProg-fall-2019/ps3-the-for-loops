@@ -13,8 +13,8 @@ up the questions between you, or better yet, work together on the questions to
 overcome potential hurdles 
 """
 #Group Members
-#Georgia Hadjis - test for Joelle
-#Joelle Girgis ----Joelle's test
+#Georgia Hadjis
+#Joelle Girgis 
 #Emily Schwartzman
 #Youval Aberman
 #William Staples
@@ -76,7 +76,7 @@ rt_sort=IAT_clean.sort_values(by=['rt'])
 print('\nFASTEST RTs:','\n',rt_sort.iloc[0:5,0])
 
 # the ids of the 5 men with the strongest white-good bias
-menbias_sort=IAT_clean.sort_values(by=['gender','D_white_bias'],ascending=[False,True])
+menbias_sort=IAT_clean.sort_values(by=['gender','D_white_bias'],ascending=[True,False])
 print('\nMEN WITH STRONGEST BIAS','\n',menbias_sort.iloc[0:5,0])
 
 # the ids of the 5 women in new york with the strongest white-good bias
@@ -89,12 +89,11 @@ print('\nNY WOMEN WITH STRONGEST BIAS','\n',womenbias_sort.iloc[0:5,0])
 
 # check out the unique method: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.unique.html
 # use it to get a list of states
-states =...
-
+states =pd.Series(pd.Categorical(IAT_clean.state)).unique()
 # write a loop that iterates over states to calculate the median white-good
 # bias per state
 # store the results in a dataframe with 2 columns: state & bias
-...
+
 
 
 # now use the pivot_table function to calculate the same statistics
