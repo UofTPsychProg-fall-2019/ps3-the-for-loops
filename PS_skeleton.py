@@ -76,7 +76,7 @@ rt_sort=IAT_clean.sort_values(by=['rt'])
 print('\nFASTEST RTs:','\n',rt_sort.iloc[0:5,0])
 
 # the ids of the 5 men with the strongest white-good bias
-menbias_sort=IAT_clean.sort_values(by=['gender','D_white_bias'],ascending=[False,True])
+menbias_sort=IAT_clean.sort_values(by=['gender','D_white_bias'],ascending=[True,False])
 print('\nMEN WITH STRONGEST BIAS','\n',menbias_sort.iloc[0:5,0])
 
 # the ids of the 5 women in new york with the strongest white-good bias
