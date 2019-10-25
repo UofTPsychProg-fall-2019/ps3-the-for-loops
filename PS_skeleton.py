@@ -115,6 +115,7 @@ IAT_clean['race_black'] = 1*(IAT_clean.race==5)
 # *hint check out the normalization options
 prop_black = (pd.crosstab(IAT_clean.race_black, IAT_clean.state))
 
+prop_black_tran = prop_black.transpose() #easier view
 
 print(pd.crosstab(IAT_clean.race_black, IAT_clean.state, normalize=True))
 print(pd.crosstab(IAT_clean.race_black, IAT_clean.state, normalize='columns'))
@@ -124,7 +125,8 @@ print(pd.crosstab(IAT_clean.race_black, IAT_clean.state,  normalize='index'))
 # the last column contains the proportion of residents who identify as 
 # black/African American 
 # read in this file and merge its contents with your prop_black table
-merged =...
+census = pd.read_excel('state_pop.xlsx')
+census=census.rename(columns={'State':'state'}) #consistency in 'state' column names, for merging
 
 #merge census df with prop_black df --> HELP!
 merged = pd.merge(census,prop_black_tran, on = ???????) #what is the matching identifier?
