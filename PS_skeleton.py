@@ -109,6 +109,7 @@ state_race_bias=...
 
 # add a new variable that codes for whether or not a participant identifies as 
 # black/African American
+IAT_clean['race_black'] = 1*(IAT_clean.race==5) #you want this to be the sam elength as data frame, or a single value, which it iwll propogate throughout all ns of data frame 
 
 # use your new variable along with the crosstab function to calculate the 
 # proportion of each state's population that is black 
