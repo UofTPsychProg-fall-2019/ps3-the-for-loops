@@ -13,8 +13,8 @@ up the questions between you, or better yet, work together on the questions to
 overcome potential hurdles 
 """
 #Group Members
-#Georgia Hadjis - test for Joelle
-#Joelle Girgis ----Joelle's test
+#Georgia Hadjis
+#Joelle Girgis 
 #Emily Schwartzman
 #Youval Aberman
 #William Staples
@@ -89,12 +89,11 @@ print('\nNY WOMEN WITH STRONGEST BIAS','\n',womenbias_sort.iloc[0:5,0])
 
 # check out the unique method: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.unique.html
 # use it to get a list of states
-states =...
-
+states =pd.Series(pd.Categorical(IAT_clean.state)).unique()
 # write a loop that iterates over states to calculate the median white-good
 # bias per state
 # store the results in a dataframe with 2 columns: state & bias
-...
+
 
 
 # now use the pivot_table function to calculate the same statistics
