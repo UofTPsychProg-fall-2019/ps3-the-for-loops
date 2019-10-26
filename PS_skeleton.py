@@ -105,7 +105,10 @@ state_bias=pd.pivot_table (IAT_clean, values = 'D_white_bias',
                            aggfunc=np.median)
 # make another pivot_table that calculates median bias per state, separately 
 # for each race (organized by columns)
-state_race_bias=...
+state_race_bias=pd.pivot_table(IAT_clean, values = 'D_white_bias',
+                               index = ['state'],
+                               columns = ['race'],
+                               aggfunc=np.median)
 
 #%%
 # Question 4: merging and more merging
