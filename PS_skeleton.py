@@ -117,9 +117,7 @@ IAT_clean['race_black'] = 1*(IAT_clean.race==5)
 # use your new variable along with the crosstab function to calculate the 
 # proportion of each state's population that is black 
 # *hint check out the normalization options
-prop_black = (pd.crosstab(IAT_clean.race_black, IAT_clean.state))
-
-prop_black_tran = prop_black.transpose() #easier view
+prop_black = pd.crosstab(IAT_clean.state, IAT_clean.race_black, normalize='index')
 
 print(pd.crosstab(IAT_clean.race_black, IAT_clean.state, normalize=True))
 print(pd.crosstab(IAT_clean.race_black, IAT_clean.state, normalize='columns'))
@@ -133,15 +131,20 @@ census = pd.read_excel('state_pop.xlsx')
 census=census.rename(columns={'State':'state'}) #consistency in 'state' column names, for merging
 
 #merge census df with prop_black df --> HELP!
-merged = pd.merge(census,prop_black_tran, on = ???????) #what is the matching identifier?
+prop_black_True = prop_black.loc[:, 1]  #index only column with black proportions
+prop_black_True = prop_black_True.rename('prop_black') #rename 
+
+merged = pd.merge(prop_black_True, census, on= 'state') #why isn't this working?
 merged.describe()
 
 # use the corr method to correlate the census proportions to the sample proportions
+np.corrcoef(merged.per_black,merged.prop_black)
 
 # now merge the census data with your state_race_bias pivot table
 
 # use the corr method again to determine whether white_good biases is correlated 
 # with the proportion of the population which is black across states
+
 # calculate and print this correlation for white and black participants
 
 
