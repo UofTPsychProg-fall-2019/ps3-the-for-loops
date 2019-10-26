@@ -27,33 +27,24 @@ import pandas as pd
 # Question 1: reading and cleaning
 
 # read in the included IAT_2018.csv file
-IAT=pd.read_csv('C:\\Users\\emily\\Documents\\GitHub\\Lec3_Files\\IAT_2018.csv',delimiter=',')
+#edit, just to make it easier for folks 
+localPath = '/Users/uv/Documents/GitHub/Lec3_Files/IAT_2018.csv'
+IAT=pd.read_csv(localPath,delimiter=',')
 
 # rename and reorder the variables to the following (original name->new name):
-# session_id->id
-IAT=IAT.rename(columns={'session_id':'id'})
-# genderidentity->gender
-IAT=IAT.rename(columns={'genderidentity':'gender'})
-# raceomb_002->race
-IAT=IAT.rename(columns={'raceomb_002':'race'})
-# edu->edu
-IAT=IAT.rename(columns={'edu':'edu'})
-# politicalid_7->politic
-IAT=IAT.rename(columns={'politicalid_7':'politic'})
-# STATE -> state
-IAT=IAT.rename(columns={'STATE':'state'})
-# att_7->attitude 
-IAT=IAT.rename(columns={'att_7':'attitude'})
-# tblacks_0to10-> tblack
-IAT=IAT.rename(columns={'tblacks_0to10':'tblack'})
-# twhites_0to10-> twhite
-IAT=IAT.rename(columns={'twhites_0to10':'twhite'})
-# labels->labels
-IAT=IAT.rename(columns={'labels':'labels'})
-# D_biep.White_Good_all->D_wIAhite_bias
-IAT=IAT.rename(columns={'D_biep.White_Good_all':'D_white_bias'})
-# Mn_RT_all_3467->rt
-IAT=IAT.rename(columns={'Mn_RT_all_3467':'rt'})
+IAT.columns
+IAT=IAT.rename(columns={'session_id':'id',      # session_id->id
+                        'genderidentity':'gender',  #  genderidentity->gender
+                        'raceomb_002':'race', #     raceomb_002->race
+                        'politicalid_7':'politic'   ,# politicalid_7->politic
+                        'STATE':'state',#           STATE -> state
+                        #edu is already named like that, no need to change it
+                        'att_7':'attitude',         # att_7->attitude 
+                        'tblacks_0to10':'tblack',# tblacks_0to10-> tblack
+                        'twhites_0to10':'twhite',# twhites_0to10-> twhite
+                        'labels':'labels',       # labels->labels
+                        'D_biep.White_Good_all':'D_white_bias',# D_biep.White_Good_all->D_wIAhite_bias
+                        'Mn_RT_all_3467':'rt'})# Mn_RT_all_3467->rt
 
 IAT=IAT[['id','gender','race','edu','politic','state','attitude','tblack','twhite','labels','D_white_bias','rt']]
 
@@ -63,9 +54,7 @@ IAT_clean = IAT.dropna(how='any',axis=0)
 # check out the replace method: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.replace.html
 # use this to recode gender so that 1=men and 2=women (instead of '[1]' and '[2]')
 IAT_clean = IAT_clean.replace({'[1]':1,'[2]':2})
-
 # use this cleaned dataframe to answer the following questions
-
 #%%
 # Question 2: sorting and indexing
 
