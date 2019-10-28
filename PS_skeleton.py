@@ -28,7 +28,7 @@ import pandas as pd
 
 # read in the included IAT_2018.csv file
 #edit, just to make it easier for folks 
-localPath = '/Users/uv/Documents/GitHub/Lec3_Files/IAT_2018.csv'
+localPath = '/Users/emily/Documents/GitHub/Lec3_Files/IAT_2018.csv'
 IAT=pd.read_csv(localPath,delimiter=',')
 
 # rename and reorder the variables to the following (original name->new name):
@@ -122,7 +122,7 @@ print(pd.crosstab(IAT_clean.race_black, IAT_clean.state,  normalize='index'))
 census = pd.read_excel('state_pop.xlsx')
 census=census.rename(columns={'State':'state'}) #consistency in 'state' column names, for merging
 
-#merge census df with prop_black df --> HELP!
+#merge census df with prop_black df 
 prop_black_True = prop_black.loc[:, 1]  #index only column with black proportions
 prop_black_True = prop_black_True.rename('prop_black') #rename 
 
@@ -133,9 +133,11 @@ merged.describe()
 np.corrcoef(merged.per_black,merged.prop_black)
 
 # now merge the census data with your state_race_bias pivot table
+merged2 = pd.merge(merged,state_bias,on='state')
 
 # use the corr method again to determine whether white_good biases is correlated 
 # with the proportion of the population which is black across states
+np.corrcoef(merged2.prop_black,merged2.D_white_bias)
 
 # calculate and print this correlation for white and black participants
 
