@@ -62,16 +62,18 @@ IAT_clean = IAT_clean.replace({'[1]':1,'[2]':2})
 
 # the ids of the 5 participants with the fastest reaction times
 rt_sort=IAT_clean.sort_values(by=['rt'])
-print('\nFASTEST RTs:','\n',rt_sort.iloc[0:5,0])
+print('\nFASTEST RTs: ','\n',rt_sort.iloc[0:5,[0,11]])
 
 # the ids of the 5 men with the strongest white-good bias
-menbias_sort=IAT_clean.sort_values(by=['gender','D_white_bias'],ascending=[True,False])
-print('\nMEN WITH STRONGEST BIAS','\n',menbias_sort.iloc[0:5,0])
+#first subset men. then apply sort_values method on that dataset.
+menbias_sort=IAT_clean[(IAT_clean.gender==1)].sort_values(by=['D_white_bias'],ascending=[False])
+
+print('\nMEN WITH STRONGEST BIAS','\n',menbias_sort.iloc[0:5,[0,10]])
 
 # the ids of the 5 women in new york with the strongest white-good bias
 ny=IAT_clean[IAT_clean.state=='NY']
-womenbias_sort=ny.sort_values(by=['gender','D_white_bias'],ascending=[False,False])
-print('\nNY WOMEN WITH STRONGEST BIAS','\n',womenbias_sort.iloc[0:5,0])
+womenbias_sort=ny[(ny.gender==2)].sort_values(by=['D_white_bias'],ascending=[False])
+print('\nNY WOMEN WITH STRONGEST BIAS','\n',womenbias_sort.iloc[0:5,[0,10]])
 
 #%%
 # Question 3: loops and pivots
