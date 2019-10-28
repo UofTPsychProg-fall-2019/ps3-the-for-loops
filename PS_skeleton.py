@@ -126,19 +126,14 @@ print(pd.crosstab(IAT_clean.race_black, IAT_clean.state,  normalize='index'))
 census = pd.read_excel('state_pop.xlsx')
 census=census.rename(columns={'State':'state'}) #consistency in 'state' column names, for merging
 
-<<<<<<< HEAD
+
 #merge census df with prop_black df --> HELP!
 #because by calling.loc [:,1] - you extract one column, so pandas saves the new object as an array. 
 #so instead I just remove the 0 column from that dataframe
 prop_black_True = prop_black.loc[:,1]  #index only column with black proportions
 prop_black_True = prop_black.drop(0,axis=1)  #drop the columns named "0", on the vertical axis
 prop_black_True = prop_black_True.rename(columns={1:'prop_black'}) #rename 
-=======
-#merge census df with prop_black df 
-prop_black_True = prop_black.loc[:, 1]  #index only column with black proportions
-prop_black_True = prop_black_True.rename('prop_black') #rename 
 
->>>>>>> 8b2be1da9600be95a28ad7519a26f5b415a6ff76
 merged = pd.merge(prop_black_True, census, on= 'state') #why isn't this working?
 merged.describe()
 
