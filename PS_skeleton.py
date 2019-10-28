@@ -81,6 +81,9 @@ print('\nNY WOMEN WITH STRONGEST BIAS','\n',womenbias_sort.iloc[0:5,[0,10]])
 # check out the unique method: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.unique.html
 # use it to get a list of states
 states =pd.Series(pd.Categorical(IAT_clean.state)).unique()
+#why not just do it in the following way? 
+states_2=pd.unique(IAT_clean.state)
+
 # write a loop that iterates over states to calculate the median white-good
 # bias per state
 # store the results in a dataframe with 2 columns: state & bias
@@ -107,7 +110,6 @@ state_race_bias=pd.pivot_table(IAT_clean, values = 'D_white_bias',
 # add a new variable that codes for whether or not a participant identifies as 
 # black/African American
 IAT_clean['race_black'] = 1*(IAT_clean.race==5)
-
 # use your new variable along with the crosstab function to calculate the 
 # proportion of each state's population that is black 
 # *hint check out the normalization options
@@ -125,9 +127,11 @@ census = pd.read_excel('state_pop.xlsx')
 census=census.rename(columns={'State':'state'}) #consistency in 'state' column names, for merging
 
 #merge census df with prop_black df --> HELP!
-prop_black_True = prop_black.loc[:, 1]  #index only column with black proportions
-prop_black_True = prop_black_True.rename('prop_black') #rename 
-
+#because by calling.loc [:,1] - you extract one column, so pandas saves the new object as an array. 
+#so instead I just remove the 0 column from that dataframe
+prop_black_True = prop_black.loc[:,1]  #index only column with black proportions
+prop_black_True = prop_black.drop(0,axis=1)  #drop the columns named "0", on the vertical axis
+prop_black_True = prop_black_True.rename(columns={1:'prop_black'}) #rename 
 merged = pd.merge(prop_black_True, census, on= 'state') #why isn't this working?
 merged.describe()
 
