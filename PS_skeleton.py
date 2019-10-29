@@ -132,7 +132,7 @@ prop_black_True = prop_black.loc[:,1]  #index only column with black proportions
 prop_black_True = prop_black.drop(0,axis=1)  #drop the columns named "0", on the vertical axis
 prop_black_True = prop_black_True.rename(columns={1:'prop_black'}) #rename 
 
-merged = pd.merge(prop_black_True, census, on= 'state') #why isn't this working?
+merged = pd.merge(prop_black_True, census, on= 'state')
 merged.describe()
 
 # use the corr method to correlate the census proportions to the sample proportions
@@ -147,6 +147,8 @@ np.corrcoef(merged2.prop_black,merged2.D_white_bias)
 
 # calculate and print this correlation for white and black participants
 
+corr_white = np.corrcoef(merged2.per_black, merged2.iloc[:,9])
+corr_black = np.corrcoef(merged2.per_black, merged2.iloc[:,8])
 
-
-
+print('\nWhite Correlation: {:.3f}'.format(corr_white[0,1]))
+print('\nBlack Correlation: {:.3f}'.format(corr_black[0,1]))
