@@ -43,7 +43,7 @@ IAT=IAT.rename(columns={'session_id':'id',      # session_id->id
                         'tblacks_0to10':'tblack',# tblacks_0to10-> tblack
                         'twhites_0to10':'twhite',# twhites_0to10-> twhite
                         'labels':'labels',       # labels->labels
-                        'D_biep.White_Good_all':'D_white_bias',# D_biep.White_Good_all->D_wIAhite_bias
+                        'D_biep.White_Good_all':'D_white_bias',# D_biep.White_Good_all->D_white_bias
                         'Mn_RT_all_3467':'rt'})# Mn_RT_all_3467->rt
 
 IAT=IAT[['id','gender','race','edu','politic','state','attitude','tblack','twhite','labels','D_white_bias','rt']]
@@ -80,9 +80,7 @@ print('\nNY WOMEN WITH STRONGEST BIAS','\n',womenbias_sort.iloc[0:5,[0,10]])
 
 # check out the unique method: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.unique.html
 # use it to get a list of states
-states =pd.Series(pd.Categorical(IAT_clean.state)).unique()
-#why not just do it in the following way? 
-states_2=pd.unique(IAT_clean.state)
+states=pd.unique(IAT_clean.state)
 
 # write a loop that iterates over states to calculate the median white-good
 # bias per state
@@ -148,7 +146,6 @@ merged2 = pd.merge(merged,state_bias,on='state')
 np.corrcoef(merged2.prop_black,merged2.D_white_bias)
 
 # calculate and print this correlation for white and black participants
-
 
 
 
